@@ -9,7 +9,7 @@ void CaesarCipher(string Text,ll Key,bool Type)
     {
         Text[i] = tolower(Text[i]);
         ll Cur;
-        if(!Type)Cur = ( (Text[i] - 'a') + Key) % 26;
+        if(!Type) Cur = ( (Text[i] - 'a') + Key) % 26;
         else
         {
             Cur = (Text[i] - 'a') - Key;

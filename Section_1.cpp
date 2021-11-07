@@ -5,15 +5,15 @@ string Alph = "abcdefghijklmnopqrstuvwxyz";
 
 void CaesarCipher(string Text,ll Key,bool Type)
 {
-    for(ll i =0; i<Text.size(); i++)
+    for(ll i = 0; i<Text.size(); i++)
     {
         Text[i] = tolower(Text[i]);
         ll Cur;
-        if(!Type)Cur = ( (Text[i]-'a') + Key) % 26;
+        if(!Type)Cur = ( (Text[i] - 'a') + Key) % 26;
         else
         {
-            Cur = (Text[i]-'a') - Key;
-            if(Cur < 0)Cur += 26;
+            Cur = (Text[i] - 'a') - Key;
+            if(Cur < 0) Cur += 26;
         }
         cout<<Alph[Cur];
     }

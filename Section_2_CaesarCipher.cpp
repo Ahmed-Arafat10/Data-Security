@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 typedef long long ll;
 using namespace std;
+///O(N)
 void CaesarCipher(string Text,ll Key,bool Type)
 {
     for(ll i = 0; i<Text.size(); i++)
@@ -11,8 +12,13 @@ void CaesarCipher(string Text,ll Key,bool Type)
         else
         {
             Cur = (Text[i] - 'a') - Key;
-            if(Cur < 0) Cur += 26;
+            if(Cur < 0)
+            {
+                Cur = abs(Cur) % 26;
+                Cur = 26 - Cur;
+            }
         }
+
         char c = Cur + 'a';
         cout<<c;
     }

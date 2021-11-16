@@ -76,7 +76,7 @@ int main()
             if(r >= PlainText.size()) break;
             if(PlainText[r] == PlainText[l])
             {
-                if(PlainText[r] == 'x')PlainText.insert(PlainText.begin()+r,'z');
+                if(PlainText[r] == 'x') PlainText.insert(PlainText.begin()+r,'z');
                 else PlainText.insert(PlainText.begin()+r,'x');
                 cnt_extension++;
             }
@@ -112,7 +112,6 @@ int main()
             {
                 if(C1.second == 4) cout<<Matrix[C1.first][0];
                 else cout<<Matrix[C1.first][C1.second+1];
-
                 if(C2.second == 4) cout<<Matrix[C2.first][0];
                 else cout<<Matrix[C2.first][C2.second+1];
             }
@@ -120,7 +119,6 @@ int main()
             {
                 if(C1.first == 4) cout<<Matrix[0][C1.second];
                 else cout<<Matrix[C1.first+1][C1.second];
-
                 if(C2.first == 4) cout<<Matrix[0][C2.second];
                 else cout<<Matrix[C2.first+1][C2.second];
             }

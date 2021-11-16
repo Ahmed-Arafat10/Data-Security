@@ -33,7 +33,6 @@ int main()
                 {
                     if(!IsItIorJ && Keyword[idx] != ' ')  Matrix[i][j] = Keyword[idx] ;
                     else if(Keyword[idx] != 'i' && Keyword[idx] != 'j' && Keyword[idx] != ' ') Matrix[i][j] = Keyword[idx];
-
                     if(Keyword[idx] == 'i' || Keyword[idx] =='j' ) IsItIorJ = true;
                     idx++;
                 }
@@ -68,8 +67,6 @@ int main()
         puts("");
     }
     puts("");
-    puts("");
-    puts("");
     ll cnt_spaces = 0, cnt_extension = 0;
     if(Type == 'e')
     {
@@ -83,10 +80,8 @@ int main()
                 else PlainText.insert(PlainText.begin()+r,'x');
                 cnt_extension++;
             }
-
             if(PlainText[r] == ' ' || PlainText[l] == ' ') cnt_spaces++,i++;
             i+=2;
-
         }
         ll char_sz = (PlainText.size() + cnt_extension) - cnt_spaces;
         if(char_sz & 1)
@@ -94,7 +89,6 @@ int main()
             if(PlainText[PlainText.size()-1] != 'x')PlainText+= 'x';
             else PlainText+= 'z';
         }
-
         //Debug
         //cout<<PlainText;
     }
@@ -161,7 +155,6 @@ int main()
             {
                 if(C1.first == 0) cout<<Matrix[4][C1.second];
                 else cout<<Matrix[C1.first-1][C1.second];
-
                 if(C2.first == 0) cout<<Matrix[4][C2.second];
                 else cout<<Matrix[C2.first-1][C2.second];
             }

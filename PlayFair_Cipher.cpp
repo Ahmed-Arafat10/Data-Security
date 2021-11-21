@@ -26,16 +26,24 @@ int main()
     {
         for(ll j = 0; j<5; j++)
         {
+HERE:
             if(idx < Keyword.size())
             {
+
                 KeywordFreq[Keyword[idx]]++;
-                if(KeywordFreq[Keyword[idx]] == 1)
+                if(KeywordFreq[Keyword[idx]] == 1 &&  Keyword[idx] != ' ')
                 {
                     if(!IsItIorJ && Keyword[idx] != ' ')  Matrix[i][j] = Keyword[idx] ;
                     else if(Keyword[idx] != 'i' && Keyword[idx] != 'j' && Keyword[idx] != ' ') Matrix[i][j] = Keyword[idx];
                     if(Keyword[idx] == 'i' || Keyword[idx] =='j' ) IsItIorJ = true;
                     idx++;
                 }
+                else
+                {
+                    idx++;
+                    goto HERE;
+                }
+
             }
             else
             {
@@ -63,6 +71,8 @@ int main()
         {
             printf("%c ",Matrix[i][j]);
             CharCoordinate[Matrix[i][j]] = {i,j};
+            if(Matrix[i][j] == 'i') CharCoordinate['j'] = {i,j};
+            else if(Matrix[i][j] == 'j') CharCoordinate['i'] = {i,j};
         }
         puts("");
     }
@@ -78,19 +88,19 @@ int main()
             {
                 if(PlainText[r] == 'x') PlainText.insert(PlainText.begin()+r,'z');
                 else PlainText.insert(PlainText.begin()+r,'x');
-                cnt_extension++;
+                //cnt_extension++;
             }
             if(PlainText[r] == ' ' || PlainText[l] == ' ') cnt_spaces++,i++;
             i+=2;
         }
-        ll char_sz = (PlainText.size() + cnt_extension) - cnt_spaces;
+        ll char_sz = (PlainText.size()) - cnt_spaces;
         if(char_sz & 1)
         {
             if(PlainText[PlainText.size()-1] != 'x')PlainText+= 'x';
             else PlainText+= 'z';
         }
         //Debug
-        //cout<<PlainText;
+        cout<<"PlainText:"<<PlainText<<"\n";
     }
     for(ll i = 0; i<PlainText.size();)
     {
@@ -139,9 +149,9 @@ int main()
             i+=2;
         }
         //------Decryption------------
-         if(Type == 'd')
+        if(Type == 'd')
         {
-        if(C1.first == C2.first)
+            if(C1.first == C2.first)
             {
                 if(C1.second == 0) cout<<Matrix[C1.first][4];
                 else cout<<Matrix[C1.first][C1.second-1];
@@ -182,7 +192,7 @@ HELP ME
 e
 
 O/P:
-cfpq
+cfpq cl
 --------
 I/P:
 
@@ -191,5 +201,32 @@ cfpq cl
 d
 
 O/P:
-cfpq cl
+help me
+--------
+I/P:
+
+playfair example
+modlajoqyg
+d
+
+O/P:
+escapenowx
+
+--------
+I/P:
+integrity
+hidden
+e
+
+O/P:
+dtkukive
+--------
+I/P:
+integrity
+osopwijb
+d
+
+O/P:
+mqmouter
+
 */

@@ -24,26 +24,19 @@ int main()
     bool IsItIorJ = false;
     for(ll i = 0; i<5; i++)
     {
-        for(ll j = 0; j<5; j++)
+        for(ll j = 0; j<5;)
         {
-HERE:
             if(idx < Keyword.size())
             {
-
                 KeywordFreq[Keyword[idx]]++;
                 if(KeywordFreq[Keyword[idx]] == 1 &&  Keyword[idx] != ' ')
                 {
                     if(!IsItIorJ && Keyword[idx] != ' ')  Matrix[i][j] = Keyword[idx] ;
                     else if(Keyword[idx] != 'i' && Keyword[idx] != 'j' && Keyword[idx] != ' ') Matrix[i][j] = Keyword[idx];
                     if(Keyword[idx] == 'i' || Keyword[idx] =='j' ) IsItIorJ = true;
-                    idx++;
+                    idx++,j++;
                 }
-                else
-                {
-                    idx++;
-                    goto HERE;
-                }
-
+                else idx++;
             }
             else
             {
@@ -60,6 +53,7 @@ HERE:
                     }
                     c+=1;
                 }
+                j++;
             }
         }
     }
@@ -100,7 +94,7 @@ HERE:
             else PlainText+= 'z';
         }
         //Debug
-        cout<<"PlainText:"<<PlainText<<"\n";
+        cout<<"PlainText:    "<<PlainText<<"\n";
     }
     for(ll i = 0; i<PlainText.size();)
     {

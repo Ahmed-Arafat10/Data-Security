@@ -2,6 +2,7 @@
 typedef long long ll;
 using namespace std;
 unordered_map<string,ll>UniqueOTP;
+string Binary;
 string ToLowChar(string str, ll sz)
 {
     for(ll i = 0; i<sz; i++) str[i] = tolower(str[i]);
@@ -10,10 +11,7 @@ string ToLowChar(string str, ll sz)
 string GenerateOTP(ll sz)
 {
     vector<char>v1;
-    for(char c = 'a'; c<='z'; c++)
-    {
-        v1.push_back(c);
-    }
+    for(char c = 'a'; c<='z'; c++) v1.push_back(c);
 HERE:
     string OTP;
     ll cnt = 0;
@@ -21,8 +19,6 @@ HERE:
     {
         ll Random = rand() % v1.size();
         OTP += v1[Random];
-        //swap(v1[Random],v1[v1.end()-1]);
-        //v1.erase(v1.end()-1);
         cnt++;
     }
     if(UniqueOTP[OTP] != 0) goto HERE;
@@ -31,19 +27,30 @@ HERE:
 }
 string CipherEncrypt(string Plain, string OTP)
 {
+    cout<<"ChiperText Is: ";
     string Cipher;
     for(ll i =0; i<Plain.size(); i++)
     {
         if(Plain[i] == ' ')
         {
+            Cipher+=" ";
             cout<<" ";
             continue;
         }
         ll __O = OTP[i] -'a';
         ll __P = Plain[i] - 'a';
-        if(__O < __P) __O += 10;
-        char __R = ( (__O - __P) % 26 )+ 'a'  ;
-        Cipher+= __R;
+        char __R;
+        if(__O < __P)
+        {
+            __R = 'a' + (__P - __O) % 26;
+            Binary+="1";
+        }
+        else
+        {
+            __R = 'a' + (__O - __P) % 26;
+            Binary+="0";
+        }
+        Cipher += __R;
         cout<<__R;
     }
     puts("");
@@ -61,8 +68,9 @@ void CipherDecrypt(string Cipher, string OTP)
         }
         ll __O = OTP[i] -'a';
         ll __P = Cipher[i] - 'a';
-        if(__O < __P) __O += 10;
-         char __R = ( (__O - __P) % 26 ) + 'a'  ;
+        char __R;
+        if(Binary[i] == '1') __R = 'a' + (__P + __O) % 26;
+        else __R = 'a' + (__O - __P) % 26;
         cout<<__R;
     }
     puts("");
@@ -73,18 +81,15 @@ int main()
     srand((unsigned) time(NULL));
     while(true)
     {
-        printf("Please Enter Text you want to encrypt\n");
+        printf("Please Enter Text you want to Encrypt:\n");
         string Plain;
         getline(cin,Plain);
         Plain = ToLowChar(Plain,Plain.size());
         string OTP = GenerateOTP(Plain.size());
         cout<<"Unique OTP is: "<<OTP<<"\n";
         string Cipher = CipherEncrypt(Plain,OTP);
-        cout<<"THIS CIPHER"<<Cipher<<"\n";
+        //cout<<"ChiperText Is: "<<Cipher<<"\n";
         CipherDecrypt(Cipher,OTP);
+        Binary="";
     }
 }
-
-/*
-
-*/

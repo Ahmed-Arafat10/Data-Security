@@ -34,6 +34,7 @@ string CipherEncrypt(string Plain, string OTP)
         if(Plain[i] == ' ')
         {
             Cipher+=" ";
+            Binary+="/";
             cout<<" ";
             continue;
         }

@@ -31,8 +31,8 @@ int main()
                 KeywordFreq[Keyword[idx]]++;
                 if(KeywordFreq[Keyword[idx]] == 1 &&  Keyword[idx] != ' ')
                 {
-                    if(!IsItIorJ && Keyword[idx] != ' ')  Matrix[i][j] = Keyword[idx] ;
-                    else if(Keyword[idx] != 'i' && Keyword[idx] != 'j' && Keyword[idx] != ' ') Matrix[i][j] = Keyword[idx];
+                    if(!IsItIorJ)  Matrix[i][j] = Keyword[idx] ;
+                    else if(Keyword[idx] != 'i' && Keyword[idx] != 'j') Matrix[i][j] = Keyword[idx];
                     if(Keyword[idx] == 'i' || Keyword[idx] =='j' ) IsItIorJ = true;
                     idx++,j++;
                 }

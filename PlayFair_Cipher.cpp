@@ -31,7 +31,7 @@ int main()
                 KeywordFreq[Keyword[idx]]++;
                 if(KeywordFreq[Keyword[idx]] == 1 &&  Keyword[idx] != ' ')
                 {
-                    if(!IsItIorJ)  Matrix[i][j] = Keyword[idx] ;
+                    if(!IsItIorJ) Matrix[i][j] = Keyword[idx] ;
                     else if(Keyword[idx] != 'i' && Keyword[idx] != 'j') Matrix[i][j] = Keyword[idx];
                     if(Keyword[idx] == 'i' || Keyword[idx] =='j' ) IsItIorJ = true;
                     idx++,j++;
@@ -51,7 +51,7 @@ int main()
                         if(c == 'i' || c =='j' ) IsItIorJ = true;
                         flag = false;
                     }
-                    c+=1;
+                    c++;
                 }
                 j++;
             }
@@ -90,7 +90,7 @@ int main()
         ll char_sz = (PlainText.size()) - cnt_spaces;
         if(char_sz & 1)
         {
-            if(PlainText[PlainText.size()-1] != 'x')PlainText+= 'x';
+            if(PlainText[PlainText.size()-1] != 'x') PlainText+= 'x';
             else PlainText+= 'z';
         }
         //Debug

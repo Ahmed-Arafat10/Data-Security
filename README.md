@@ -2,6 +2,7 @@
 # Traditional Cipher:
 
 ## Substitution Cipher:
+> Change each charecter
 --------------------
 1) Caesar Cipher
 > {Shift Latters N times}
@@ -21,7 +22,8 @@ key : deceptivedeceptivedeceptive // plaintext : wearediscoveredsaveyourself
 > {On Numbers}
 8) XOR Operation
 > {On binary}
-## Transposition Ciphers {Same charecters but change location}:
+## Transposition Ciphers:
+> Same Characters but changing thier locations
 ----------------------
 1) Scytale Cipher
 2) Geometric Figure 

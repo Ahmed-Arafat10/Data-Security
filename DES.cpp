@@ -1,5 +1,6 @@
 /*
 DES Algorithm | Data Encryption Standard
+NOT COMPLETED YET 
 */
 #include <bits/stdc++.h>
 typedef long long ll;

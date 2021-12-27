@@ -1,5 +1,5 @@
-// This Code WIll be used in DES Algorithm to convert plaintext into binart then into 64-bits blocks , ans after
-// encryption to convert binary encrypted into ciphertext 
+/* This Code Will be used in DES Algorithm to convert plaintext into binary then into 64-bit blocks, and after
+encryption to convert encrypted binary blocks into ciphertext again */ 
 #include <bits/stdc++.h>
 typedef long long ll;
 using namespace std;

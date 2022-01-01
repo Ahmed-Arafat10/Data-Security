@@ -61,6 +61,7 @@ int main()
     v1 = solve(v1,Text,NoOfRows,0);
     if(Type == 'e')
     {
+        cout<<"CipherText Is : ";
         for(auto &it:v1) cout<<it;
     }
     else
@@ -74,6 +75,7 @@ int main()
             }
         }
         //for(auto &it:v1) cout<<it<<" ";
+        cout<<"PlainText Is : ";
         v1 = solve(v1,Text,NoOfRows,1);
     }
 }
@@ -112,6 +114,15 @@ d
 
 O/P:
 runawaynow
+-------
+-------
+I/P:
+3
+dlneperigean
+d
+
+O/P:
+deeplearning
 -------
 -------
 */

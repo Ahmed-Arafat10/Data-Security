@@ -1,137 +1,96 @@
 #include <bits/stdc++.h>
 typedef long long ll;
 using namespace std;
-vector<string> solve(vector<string>&v1,string Text, ll NoOfRows, bool is_print)
+unordered_map<string,ll>UniqueOTP;
+string Binary;
+string ToLowChar(string str, ll sz)
 {
-    ll cnt = 1;
-    bool Dir = true, limit = true;
-    unordered_map<ll,ll>mp;
-    for(ll i = 0; i<Text.size(); i++)
+    for(ll i = 0; i<sz; i++) str[i] = tolower(str[i]);
+    return str;
+}
+string GenerateOTP(ll sz)
+{
+    vector<char>v1;
+    for(char c = 'a'; c<='z'; c++) v1.push_back(c);
+HERE:
+    string OTP;
+    ll cnt = 0;
+    while(cnt != sz)
     {
-        if(limit) mp[cnt-1] = 0;
-        if(Text[i] == ' ') continue;
-        if(Dir)
+        ll Random = rand() % v1.size();
+        OTP += v1[Random];
+        cnt++;
+    }
+    if(UniqueOTP[OTP] != 0) goto HERE;
+    else UniqueOTP[OTP]++;
+    return OTP;
+}
+string CipherEncrypt(string Plain, string OTP)
+{
+    cout<<"ChiperText Is: ";
+    string Cipher;
+    for(ll i =0; i<Plain.size(); i++)
+    {
+        if(Plain[i] == ' ')
         {
-            if(is_print)
-            {
-                cout<<v1[cnt-1][mp[cnt-1]];
-                mp[cnt-1]++;
-            }
-            else v1[cnt-1] += Text[i];
-            cnt++;
+            Cipher+=" ";
+            Binary+="/";
+            cout<<" ";
+            continue;
+        }
+        ll __O = OTP[i] -'a';
+        ll __P = Plain[i] - 'a';
+        char __R;
+        if(__O < __P)
+        {
+            __R = 'a' + (__P - __O) % 26;
+            Binary+="1";
         }
         else
         {
-            if(is_print)
-            {
-                cout<<v1[cnt-1][mp[cnt-1]];
-                mp[cnt-1]++;
-            }
-            else v1[cnt-1] += Text[i];
-            cnt--;
+            __R = 'a' + (__O - __P) % 26;
+            Binary+="0";
         }
-        if(cnt == (NoOfRows+1)) Dir = false, cnt-=2, limit = false;
-        else if(cnt == 0 && i != 0) Dir = true, cnt+=2 ;
+        Cipher += __R;
+        cout<<__R;
     }
-    return v1;
+    puts("");
+    return Cipher;
 }
-string ToLower(string Text)
+
+void CipherDecrypt(string Cipher, string OTP)
 {
-    for(ll i =0; i<Text.size(); i++)
+    for(ll i = 0; i<Cipher.size(); i++)
     {
-        Text[i] = tolower(Text[i]);
+        if(Cipher[i] == ' ')
+        {
+            cout<<" ";
+            continue;
+        }
+        ll __O = OTP[i] -'a';
+        ll __P = Cipher[i] - 'a';
+        char __R;
+        if(Binary[i] == '1') __R = 'a' + (__P + __O) % 26;
+        else __R = 'a' + (__O - __P) % 26;
+        cout<<__R;
     }
-    return Text;
+    puts("");
 }
+
 int main()
 {
-
-    ll NoOfRows;
-    cout<<"Please Enter Number Of Rows : ";
-    cin>>NoOfRows;
-    string Text;
-    cout<<"Please Enter Text : ";
-    cin.ignore();
-    getline(cin,Text);
-    //Text = ToLower(Text);
-    char Type;
-    cout<<"please Enter (e) To Encrypt , (d) to Decrypt : ";
-    cin>>Type;
-    vector<string> v1(NoOfRows);
-    v1 = solve(v1,Text,NoOfRows,0);
-    if(Type == 'e')
+    srand((unsigned) time(NULL));
+    while(true)
     {
-        cout<<"CipherText Is : ";
-        for(auto &it:v1) cout<<it;
-    }
-    else
-    {
-        ll idx = 0;
-        for(ll i =0; i<v1.size(); i++)
-        {
-            for(ll j = 0; j<v1[i].size(); j++)
-            {
-                v1[i][j] = Text[idx++];
-            }
-        }
-        //for(auto &it:v1) cout<<it<<" ";
-        cout<<"PlainText Is : ";
-        v1 = solve(v1,Text,NoOfRows,1);
+        printf("Please Enter Text you want to Encrypt:\n");
+        string Plain;
+        getline(cin,Plain);
+        Plain = ToLowChar(Plain,Plain.size());
+        string OTP = GenerateOTP(Plain.size());
+        cout<<"Unique OTP is: "<<OTP<<"\n";
+        string Cipher = CipherEncrypt(Plain,OTP);
+        //cout<<"ChiperText Is: "<<Cipher<<"\n";
+        CipherDecrypt(Cipher,OTP);
+        Binary="";
     }
 }
-/*
-I/P:
-2
-help us
-e
-
-O/P:
-hlueps
--------
--------
-I/P:
-2
-hlueps
-d
-
-O/P:
-helpus
--------
--------
-I/P:
-2
-ecytonrpin
-d
-
-O/P:
-encryption
--------
--------
-I/P:
-3
-rwouaanwny
-d
-
-O/P:
-runawaynow
--------
--------
-I/P:
-3
-dlneperigean
-d
-
-O/P:
-deeplearning
--------
--------
-I/P:
-3
-think positively
-e
-
-O/P:
-tkiehnpstvlioiy
--------
--------
-*/

@@ -125,4 +125,13 @@ O/P:
 deeplearning
 -------
 -------
+I/P:
+3
+think positively
+e
+
+O/P:
+tkiehnpstvlioiy
+-------
+-------
 */

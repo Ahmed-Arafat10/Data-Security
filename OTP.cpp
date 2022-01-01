@@ -37,14 +37,8 @@ void Cipher(string Plain, string OTP, char Type)
         ll __O = OTP[i] - '0';
         ll __P = Plain[i] - '0';
         ll __R;
-        if(__O < __P)
-        {
-            __R = (__O + 10) - __P;
-        }
-        else
-        {
-            __R = __O - __P;
-        }
+        if(__O < __P) __R = (__O + 10) - __P;
+        else __R = __O - __P;
         cout<<__R;
     }
     puts("");
@@ -61,7 +55,7 @@ int main()
         printf("Please Enter Text : ");
         string Plain;
         cin>>Plain;
-        Plain = ToLowChar(Plain,Plain.size());
+        //Plain = ToLowChar(Plain,Plain.size());
         printf("Please Enter (e) to Encrypt, (d) to Decrypt : ");
         char Type;
         cin>>Type;

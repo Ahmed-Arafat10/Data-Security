@@ -1,73 +1,61 @@
 #include <bits/stdc++.h>
+
 typedef long long ll;
 using namespace std;
-int main()
-{
+
+int main() {
     string Key;
     string Text;
     char Type;
-    cout<<"Please Enter Key: ";
-    cin>>Key;
+    cout << "Please Enter Key: ";
+    cin >> Key;
     ll KeySz = Key.size();
-    cout<<"Please Enter Text : ";
+    cout << "Please Enter Text : ";
     cin.ignore();
-    getline(cin,Text);
-    cout<<"Please Enter (e) to encrypt, (d) to decrypt : ";
-    cin>>Type;
-    if(Type == 'e')
-    {
+    getline(cin, Text);
+    cout << "Please Enter (e) to encrypt, (d) to decrypt : ";
+    cin >> Type;
+    if (Type == 'e') {
         ll Spaces = 0;
-        for(ll i =0; i<Text.size(); i++)
-        {
-            if(Text[i] == ' ') Spaces++;
+        for (ll i = 0; i < Text.size(); i++) {
+            if (Text[i] == ' ') Spaces++;
         }
-        ll TextSz =Text.size() - Spaces;
+        ll TextSz = Text.size() - Spaces;
         ll Row = ceil(TextSz * 1.0 / KeySz);
         //Debug
         //cout<<"This row:"<<Row;
         char Grid[Row][KeySz];
         ll idx = 0;
-        for(ll i = 0; i<Row; i++)
-        {
-            for(ll j = 0; j<KeySz; j++)
-            {
-                if(idx < Text.size())
-                {
-                    if(Text[idx] != ' ') Grid[i][j] = Text[idx], idx++;
+        for (ll i = 0; i < Row; i++) {
+            for (ll j = 0; j < KeySz; j++) {
+                if (idx < Text.size()) {
+                    if (Text[idx] != ' ') Grid[i][j] = Text[idx], idx++;
                     else Grid[i][j] = Text[++idx], idx++;
-                }
-                else Grid[i][j] = 'z';
+                } else Grid[i][j] = 'z';
             }
         }
         //Debug
-        for(ll i =0; i<Row; i++)
-        {
-            for(ll j = 0; j<KeySz; j++)
-            {
-                cout<<Grid[i][j]<<" ";
+        for (ll i = 0; i < Row; i++) {
+            for (ll j = 0; j < KeySz; j++) {
+                cout << Grid[i][j] << " ";
             }
             puts("");
         }
         string CipherText = "";
-        for(ll i =0; i<Row; i++)
-        {
-            map<ll,char> mp;
-            for(ll j = 0 ; j<KeySz; j++)
-            {
+        for (ll i = 0; i < Row; i++) {
+            map<ll, char> mp;
+            for (ll j = 0; j < KeySz; j++) {
                 mp[Key[j] - '0'] = Grid[i][j];
             }
-            for(auto &it:mp)CipherText+= it.second;
+            for (auto &it: mp)CipherText += it.second;
         }
-        cout<<"CipherText Is: "<<CipherText;
-    }
-    else
-    {
-        map<ll,ll> mp;
+        cout << "CipherText Is: " << CipherText;
+    } else {
+        map<ll, ll> mp;
         ll Row = Text.size() / KeySz;
         char Grid[Row][KeySz];
-        for(ll i = 0; i<Key.size(); i++)
-        {
-            mp[ Key[i] - '0' ] = i;
+        for (ll i = 0; i < Key.size(); i++) {
+            mp[Key[i] - '0'] = i;
         }
         //Debug
         //for(auto &it: mp)
@@ -77,30 +65,28 @@ int main()
         ll R = 0;
         auto cur = mp.begin();
         ll cnt = 0;
-        for(ll i =0; i<Text.size(); i++)
-        {
-            if(cnt == KeySz) R++,cur = mp.begin(),cnt = 0;
+        for (ll i = 0; i < Text.size(); i++) {
+            if (cnt == KeySz) R++, cur = mp.begin(), cnt = 0;
             ll refer = cur->second;
             Grid[R][refer] = Text[i];
-            cur++,cnt++;
+            cur++, cnt++;
         }
         string PlainText;
-        for(ll i =0; i<Row; i++)
-        {
-            for(ll j = 0; j<KeySz; j++)
-            {
-                cout<<Grid[i][j]<<" ";
-                PlainText +=Grid[i][j];
+        for (ll i = 0; i < Row; i++) {
+            for (ll j = 0; j < KeySz; j++) {
+                cout << Grid[i][j] << " ";
+                PlainText += Grid[i][j];
             }
             puts("");
         }
-        cout<<"PlainText Is: "<<PlainText;
+        cout << "PlainText Is: " << PlainText;
     }
 }
 /*
 I/P:
 3412567
 attack postponed until two am
+taatckptposonentduiltamwozzz
 e
 
 O/P:
